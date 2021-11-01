@@ -41,8 +41,8 @@ const menuPrompt = () => {
 function init() {
     menuPrompt()
     .then(menuChoice)
-    if(menuChoice === View All Employees) {
-        
+    if(menuChoice === 'View All Employees') {
+
     }
 }
 

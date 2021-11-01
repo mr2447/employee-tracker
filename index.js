@@ -42,7 +42,7 @@ function init() {
     menuPrompt()
     .then(menuChoice)
     if(menuChoice === 'View All Employees') {
-
+        console.log(menuChoice)
     }
 }
 

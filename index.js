@@ -1,5 +1,4 @@
 const {prompt} = require('inquirer');
-const db = require ('./db/connection');
 const showEmployees = require('./lib/employee')
 
 const menuPrompt = () => {

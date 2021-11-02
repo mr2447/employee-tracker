@@ -1,3 +1,14 @@
-INSERT INTO employees (first_name, last_name, title, department_id, salary, role_id)
+INSERT INTO employees (first_name, last_name, role_id, manager_id)
 VALUES 
-('James', 'Fraser', 'sales', '1', '100000', '3');
+('James', 'Fraser', '1', '1');
+
+INSERT INTO roles (title, salary, department_id)
+VALUES
+('sales', '100000', '1'),
+('web-dev', '200000', '1');
+
+INSERT INTO departments (name)
+VALUES 
+('tech'),
+('music');
+

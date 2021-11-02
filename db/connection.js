@@ -1,5 +1,6 @@
 const mysql = require('mysql2');
 
+
 //Connect to database
 const db = mysql.createConnection(
     {
@@ -10,5 +11,9 @@ const db = mysql.createConnection(
     },
     console.log('Connected to the election databse.')
 );
+
+db.connect(function (err) {
+    if(err) throw err;
+})
 
 module.exports = db;

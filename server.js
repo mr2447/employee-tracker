@@ -1,5 +1,6 @@
 const {prompt} = require('inquirer');
-const { inherits } = require('util');
+const db = require ('./db/connection');
+const showEmployees = require('./lib/employee')
 
 const menuPrompt = () => {
     return prompt ([
@@ -43,7 +44,7 @@ function init() {
     .then(answer => {
         switch (answer.menuChoice) {
             case 'View All Employees':
-                console.log('View All Employees')
+                showEmployees()
                 break;
             case 'View All Employees By Department':
                 console.log('View All Employees By Department')

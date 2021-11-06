@@ -1,5 +1,5 @@
 const {prompt} = require('inquirer');
-const {showEmployees, showByDepartment, showByManager }= require('./lib/employee')
+const {showEmployees, showByDepartment, showByManager, addEmployee}= require('./lib/employee')
 
 //inquirer to do
 const menuPrompt = () => {
@@ -109,7 +109,10 @@ const askToAddEmployee = () => {
     ])
     .then(answer => {
         console.log(answer)
-        
+        addEmployee(answer)
+        setTimeout(function() {
+            init()
+        }, 500)
     });  
 };
 

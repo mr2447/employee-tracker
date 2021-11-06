@@ -44,7 +44,7 @@ function init() {
         switch (answer.menuChoice) {
             case 'View All Employees':
                 showEmployees()
-                menuPrompt()
+                console.log('View All Employees')
                 break;
             case 'View All Employees By Department':
                 showByDepartment()
@@ -87,9 +87,11 @@ function init() {
                 console.log('quit')
                 break;
         }
-
     })
 }
 
 
+
 init();
+
+

@@ -1,6 +1,7 @@
 const {prompt} = require('inquirer');
-const {showEmployees, showByDepartment }= require('./lib/employee')
+const {showEmployees, showByDepartment, showByManager }= require('./lib/employee')
 
+//inquirer to do
 const menuPrompt = () => {
     return prompt ([
         {
@@ -35,7 +36,82 @@ const menuPrompt = () => {
             }
         }
     ])
-}
+};
+
+//inquirer add employee
+const askToAddEmployee = () => {
+    return prompt ([
+        {
+            type: 'input',
+            name: 'efirst_name',
+            message: "What is the employee's first name?",
+            validate: answer => {
+                if(answer) {
+                    return true;
+                } else {
+                    console.log('Please enter a name.');
+                    return false; 
+                }
+            }
+        },
+        {
+            type: 'input',
+            name: 'elast_name',
+            message: "What is the employee's last name?",
+            validate: answer => {
+                if(answer) {
+                    return true;
+                } else {
+                    console.log('Please enter a name.');
+                    return false; 
+                }
+            }
+        },
+        {
+            type: 'input',
+            name: 'erole',
+            message: "What is the employee's role? ",
+            validate: answer => {
+                if(answer) {
+                    return true;
+                } else {
+                    console.log('Please enter a role.');
+                    return false; 
+                }
+            }
+        },
+        {
+            type: 'input',
+            name: 'mfirst_name',
+            message: "What is the FIRST name of the employee's manager?",
+            validate: answer => {
+                if(answer) {
+                    return true;
+                } else {
+                    console.log('Please enter a name.');
+                    return false; 
+                }
+            }
+        },
+        {
+            type: 'input',
+            name: 'mlast_name',
+            message: "What is the LAST name of the employee's manager?",
+            validate: answer => {
+                if(answer) {
+                    return true;
+                } else {
+                    console.log('Please enter a name.');
+                    return false; 
+                }
+            }
+        }
+    ])
+    .then(answer => {
+        console.log(answer)
+        
+    });  
+};
 
 //create a funciton to initiate app
 function init() {
@@ -44,20 +120,29 @@ function init() {
         switch (answer.menuChoice) {
             case 'View All Employees':
                 showEmployees()
-                menuPrompt()
                 console.log('View All Employees')
+                setTimeout(function() {
+                    init()
+                }, 500)
                 break;
             case 'View All Employees By Department':
                 showByDepartment()
                 console.log('View All Employees By Department')
+                setTimeout(function() {
+                    init()
+                }, 500)
                 break;
             case 'View All Employee By Manager':
+                showByManager()
                 console.log('View All Employee By Manager')
+                setTimeout(function() {
+                    init()
+                }, 500)
                 break;
             case 'Add Employee': 
-                console.log('Add Employee')
+                askToAddEmployee()
                 break;
-            case 'Remoe Employee':
+            case 'Remove Employee':
                 console.log('Remoe Employee')
                 break;
             case 'Update Employee':
@@ -89,10 +174,11 @@ function init() {
                 break;
         }
     })
-}
+};
 
 
 
 init();
+
 
 

@@ -1,7 +1,7 @@
 const {prompt} = require('inquirer');
 const {findAllRoles, showEmployees, showByDepartment, showByManager, addEmployee, removeEmployee, updateEmployee}= require('./lib/employee')
 
-//inquirer to do
+// inquirer to dos
 const menuPrompt = () => {
     return prompt ([
         {
@@ -38,7 +38,7 @@ const menuPrompt = () => {
     ])
 };
 
-//inquirer add employee
+// inquirer add employee
 const askToAddEmployee = () => {
     return prompt ([
         {
@@ -50,7 +50,7 @@ const askToAddEmployee = () => {
                 if(answer) {
                     return true;
                 } else {
-                    console.log('Please enter a role.');
+                    console.log('Please select a role.');
                     return false; 
                 }
             }
@@ -92,7 +92,7 @@ const askToAddEmployee = () => {
     });
 };
 
-//inquirer remove employee
+// inquirer remove employee
 const askToRemoveEmployee = () => {
     return prompt ([
         {
@@ -118,7 +118,7 @@ const askToRemoveEmployee = () => {
     }) 
 }
 
-//inquirer update employee
+// inquirer update employee
 const askToUpdateEmployee = () => {
     return prompt ([
         {
@@ -156,7 +156,7 @@ const askToUpdateEmployee = () => {
         }, 500)
     }) 
 }
-//create a funciton to initiate app
+// create a funciton to initiate app
 function init() {
     menuPrompt()
     .then(answer => {

@@ -1,5 +1,5 @@
 const {prompt} = require('inquirer');
-const {showEmployees, showByDepartment, showByManager, addEmployee}= require('./lib/employee')
+const {findAllRoles, showEmployees, showByDepartment, showByManager, addEmployee, removeEmployee, updateEmployee}= require('./lib/employee')
 
 //inquirer to do
 const menuPrompt = () => {
@@ -14,7 +14,7 @@ const menuPrompt = () => {
                 'View All Employees By Department', 
                 'View All Employee By Manager',
                 'Add Employee',
-                'Remoe Employee',
+                'Remove Employee',
                 'Update Employee',
                 'Update Employee Manager',
                 'View All Rols',
@@ -42,6 +42,20 @@ const menuPrompt = () => {
 const askToAddEmployee = () => {
     return prompt ([
         {
+            type: 'list',
+            name: 'erole',
+            message: "What is the employee's role? ",
+            choices: findAllRoles(),
+            validate: answer => {
+                if(answer) {
+                    return true;
+                } else {
+                    console.log('Please enter a role.');
+                    return false; 
+                }
+            }
+        },
+        {
             type: 'input',
             name: 'efirst_name',
             message: "What is the employee's first name?",
@@ -66,56 +80,82 @@ const askToAddEmployee = () => {
                     return false; 
                 }
             }
-        },
-        {
-            type: 'input',
-            name: 'erole',
-            message: "What is the employee's role? ",
-            validate: answer => {
-                if(answer) {
-                    return true;
-                } else {
-                    console.log('Please enter a role.');
-                    return false; 
-                }
-            }
-        },
-        {
-            type: 'input',
-            name: 'mfirst_name',
-            message: "What is the FIRST name of the employee's manager?",
-            validate: answer => {
-                if(answer) {
-                    return true;
-                } else {
-                    console.log('Please enter a name.');
-                    return false; 
-                }
-            }
-        },
-        {
-            type: 'input',
-            name: 'mlast_name',
-            message: "What is the LAST name of the employee's manager?",
-            validate: answer => {
-                if(answer) {
-                    return true;
-                } else {
-                    console.log('Please enter a name.');
-                    return false; 
-                }
-            }
         }
     ])
+    // .then(([rows])),
     .then(answer => {
         console.log(answer)
         addEmployee(answer)
         setTimeout(function() {
             init()
         }, 500)
-    });  
+    });
 };
 
+//inquirer remove employee
+const askToRemoveEmployee = () => {
+    return prompt ([
+        {
+            type: 'input',
+            name: 'id',
+            message: "Which employee whould you like to remove?",
+            validate: answer => {
+                if(answer = Number) {
+                    return true;
+                } else {
+                    console.log('Please enter a number.');
+                    return false; 
+                }
+            }
+        }
+    ])
+    .then(answer => {
+        console.log(answer);
+        removeEmployee(answer);
+        setTimeout(function() {
+            init()
+        }, 500)
+    }) 
+}
+
+//inquirer update employee
+const askToUpdateEmployee = () => {
+    return prompt ([
+        {
+            type: 'input',
+            name: 'role_id',
+            message: "Which role whould you like to update to?",
+            validate: answer => {
+                if(answer = Number) {
+                    return true;
+                } else {
+                    console.log('Please enter a number.');
+                    return false; 
+                }
+            }
+        },
+        {
+            type: 'input',
+            name: 'id',
+            message: "Which employee whould you like to update?",
+            validate: answer => {
+                if(answer = Number) {
+                    return true;
+                } else {
+                    console.log('Please enter a number.');
+                    return false; 
+                }
+            }
+        }
+    ])
+    .then(answer => {
+        console.log(answer);
+        updateEmployee(answer);
+        setTimeout(function() {
+            init()
+        }, 500)
+    }) 
+}
 //create a funciton to initiate app
 function init() {
     menuPrompt()
@@ -146,10 +186,10 @@ function init() {
                 askToAddEmployee()
                 break;
             case 'Remove Employee':
-                console.log('Remoe Employee')
+                askToRemoveEmployee()
                 break;
             case 'Update Employee':
-                console.log('Update Employee')
+                askToUpdateEmployee()
                 break;
             case 'Update Employee Manager':
                 console.log('Update Employee Manager')

@@ -1,5 +1,5 @@
 const {prompt} = require('inquirer');
-const showEmployees = require('./lib/employee')
+const {showEmployees, showByDepartment }= require('./lib/employee')
 
 const menuPrompt = () => {
     return prompt ([
@@ -44,8 +44,10 @@ function init() {
         switch (answer.menuChoice) {
             case 'View All Employees':
                 showEmployees()
+                menuPrompt()
                 break;
             case 'View All Employees By Department':
+                showByDepartment()
                 console.log('View All Employees By Department')
                 break;
             case 'View All Employee By Manager':

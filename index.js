@@ -1,6 +1,9 @@
 const {prompt} = require('inquirer');
 const {findAllRoles, showEmployees, showByDepartment, showByManager, addEmployee, removeEmployee, updateEmployee}= require('./lib/employee')
 
+
+
+
 // inquirer to dos
 const menuPrompt = () => {
     return prompt ([
@@ -45,7 +48,9 @@ const askToAddEmployee = () => {
             type: 'list',
             name: 'erole',
             message: "What is the employee's role? ",
-            choices: findAllRoles(),
+            choices: findAllRoles(function(res) {
+                return res;
+            }),
             validate: answer => {
                 if(answer) {
                     return true;

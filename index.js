@@ -1,5 +1,5 @@
 const {prompt} = require('inquirer');
-const {findAllRoles, showEmployees, showByDepartment, showByManager, addEmployee, removeEmployee, updateEmployee}= require('./lib/employee')
+const { showEmployees, showByDepartment, showByManager, addEmployee, removeEmployee, updateEmployee}= require('./lib/employee')
 
 
 
@@ -43,14 +43,27 @@ const menuPrompt = () => {
 
 // inquirer add employee
 const askToAddEmployee = () => {
-    return prompt ([
+    findAllRoles(function(res1, res2) {
+       return prompt ([
         {
             type: 'list',
-            name: 'erole',
+            name: 'role',
             message: "What is the employee's role? ",
-            choices: findAllRoles(function(res) {
-                return res;
-            }),
+            choices: res1,
+            validate: answer => {
+                if(answer) {
+                    return true;
+                } else {
+                    console.log('Please select a role.');
+                    return false; 
+                }
+            }
+        },
+        {
+            type: 'list',
+            name: 'manager',
+            message: "Who is the employee's manager?",
+            choices: res2,
             validate: answer => {
                 if(answer) {
                     return true;
@@ -62,7 +75,7 @@ const askToAddEmployee = () => {
         },
         {
             type: 'input',
-            name: 'efirst_name',
+            name: 'first_name',
             message: "What is the employee's first name?",
             validate: answer => {
                 if(answer) {
@@ -75,7 +88,7 @@ const askToAddEmployee = () => {
         },
         {
             type: 'input',
-            name: 'elast_name',
+            name: 'last_name',
             message: "What is the employee's last name?",
             validate: answer => {
                 if(answer) {
@@ -95,6 +108,8 @@ const askToAddEmployee = () => {
             init()
         }, 500)
     });
+
+})
 };
 
 // inquirer remove employee

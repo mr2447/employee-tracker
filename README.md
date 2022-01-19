@@ -17,7 +17,7 @@
   npm i
   ## Usage
 
-  ![terminal in VS](https://youtu.be/U18S7s9LOf8)
+    https://youtu.be/U18S7s9LOf8
   ## Credits 
   Marvin Ren https://github.com/mr2447/employee-tracker
   ## Tests
